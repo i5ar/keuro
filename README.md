@@ -99,7 +99,7 @@ Copy the keymap file into the `keymaps` directory (e.g `/lib/kbd/keymaps/legacy/
 
 ```sh
 cd keyro
-gzip -c keyro.iso15.kmap > keyro.map.gz
+gzip -c linux_console/keyro.iso15.kmap > linux_console/keyro.map.gz
 sudo cp linux_console/keyro.map.gz /lib/kbd/keymaps/legacy/i386/qwerty/keyro.map.gz  # or different directory
 ```
 

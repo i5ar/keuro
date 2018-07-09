@@ -57,8 +57,7 @@ keycode  50 =              m             M       asciitilde        asciitilde   
 keycode  51 =          comma          less     dead_cedilla        asciitilde
 keycode  52 =         period       greater       asciitilde        asciitilde           				#     	 dead_abovedot           asciitilde
 keycode  53 =          slash      question     questiondown        asciitilde    Delete
-                                                                             
-keycode  58 =      BackSpace     BackSpace        BackSpace         BackSpace
+
 keycode  86 =          minus    underscore       asciitilde        asciitilde 	 Control_underscore     #               endash               emdash
 keycode  57 =          space         space            space      nobreakspace    nul
 
@@ -72,4 +71,5 @@ keycode  29 = Control
 keycode  42 = Shift
 keycode  54 = Shift
 keycode  56 = Alt
+keycode  58 = Caps_Lock
 keycode  97 = Control
