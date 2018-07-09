@@ -105,3 +105,8 @@ venv.bak/
 
 # archives
 *.zip
+
+# setup
+*.dll
+*.msi
+*.exe
