@@ -29,7 +29,7 @@ In order to insert `'` you can just press down `'`.
 
 The Keyro layout uses the Colemak multilingual layout but arranged in a QWERTY layout.  
 
-> You can learn it in one hour.
+> All the pros of the QWERTY layout within the power of the Colemak multilingual layout.
 
 ## Layout
 
@@ -39,14 +39,13 @@ The most common dead keys (e.g. diaeresis, grave, acute, circumflex, tilde) are 
 
 `AltGr` dead keys:
 
-- **D**iaeresis (`AltGr` + `d`);
-- g**R**ave (`AltGr` + `r`);
-- acu**T**e (`AltGr` + `t`);
-- circumfle**X** (`AltGr` + `x`);
+- **d**iaeresis (`AltGr` + `d`);
+- g**r**ave (`AltGr` + `r`);
+- acu**t**e (`AltGr` + `t`);
+- circumfle**x** (`AltGr` + `x`);
 - etc.
 
 See [Colemak multilingual layout](https://colemak.com/Multilingual) for the complete list or use your imagination.
-
 
 ## Installations
 
@@ -61,9 +60,9 @@ See [Mac OS X layout](#mac-os-x-layout)
 
 ### X.Org Server 7.0 or later
 
-Copy the keymap file into the `symbols` directory (e.g. `/usr/share/X11/xkb/symbols/`):
+Copy the keymap file into the `symbols` directory (e.g. `/usr/share/X11/xkb/symbols/`, `/etc/X11/xkb/symbols/`):
 
-```
+```sh
 cd keyro
 sudo cp xorg/keyro /usr/share/X11/xkb/symbols/keyro  # or different directory
 
@@ -71,7 +70,7 @@ sudo cp xorg/keyro /usr/share/X11/xkb/symbols/keyro  # or different directory
 
 Use the `setxkbmap` command to switch layout:
 
-```
+```sh
 setxkbmap -layout keyro -v && xset r 66
 
 # test it
@@ -84,9 +83,9 @@ setxkbmap us; xset -r 66
 
 Check the configuration file `/etc/locale.conf`.
 
-In order to use the [`localectl`](https://docs.fedoraproject.org/f26/system-administrators-guide/basic-system-configuration/System_Locale_and_Keyboard_Configuration.html) command you must configure the Linux console as well (e.g. `/usr/lib/kbd/keymaps`):
+In order to use the [`localectl`](https://docs.fedoraproject.org/f26/system-administrators-guide/basic-system-configuration/System_Locale_and_Keyboard_Configuration.html) command you must configure the Linux console as well:
 
-```
+```sh
 localectl --no-convert set-x11-keymap keyro
 
 # test it
@@ -96,12 +95,37 @@ localectl status
 
 ### Linux console
 
-Copy the keymap file into the `keymaps` directory (e.g `/usr/lib/kbd/keymaps`) and gunzip it.  
+Copy the keymap file into the `keymaps` directory (e.g `/lib/kbd/keymaps/legacy/i386/qwerty/`) and gunzip it:
+
+```sh
+cd keyro
+gzip -c keyro.iso15.kmap > keyro.map.gz
+sudo cp linux_console/keyro.map.gz /lib/kbd/keymaps/legacy/i386/qwerty/keyro.map.gz  # or different directory
+```
+
 Restart the system so your layout will be listed by the `localectl list-keymaps` command.  
 Check the configuration file `/etc/vconsole.conf`.
 
 See [`loadkeys`](https://wiki.archlinux.org/index.php/Keyboard_configuration_in_console) for more info.
 
+### GNOME
+
+Add the layout rule (i.e. `/usr/share/X11/xkb/rules/evdev.xml`) and restart the system:
+
+```xml
+<layout>
+    <configItem>
+    <name>keyro</name>
+
+    <shortDescription>keyro</shortDescription>
+    <description>English (Keyro)</description>
+    <languageList>
+        <iso639Id>eng</iso639Id>
+    </languageList>
+    </configItem>
+    <variantList/>
+</layout>
+```
 
 ## Contributions
 
